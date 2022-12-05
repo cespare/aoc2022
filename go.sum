@@ -1,3 +1,5 @@
+github.com/cespare/hasty v0.1.0 h1:Vp/5rSkB28Kw+v4rJt0a3EhrCcXPRpdgBbf38pKSIdg=
+github.com/cespare/hasty v0.1.0/go.mod h1:F+Z5/aEbKZG9+j4VKkm+v0wswtRnfjrKDeVsIYoSDNw=
 github.com/cespare/next v0.0.1 h1:BcCeAGEPa8uL3Gk2f5QZ9qY9yrYZSHAQSfK4vlNzLVE=
 github.com/cespare/next v0.0.1/go.mod h1:/jKrZfiAUkGPFSE/Vpj8/7+J6KQjxej4WAZAljsYSOc=
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=

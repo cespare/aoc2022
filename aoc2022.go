@@ -452,4 +452,21 @@ func SliceReduce[S ~[]E, E, R any](s S, initial R, fn func(R, E) R) R {
 	return r
 }
 
+func SliceReverse[S ~[]E, E any](s S) {
+	for i := 0; i < len(s)/2; i++ {
+		j := len(s) - 1 - i
+		s[i], s[j] = s[j], s[i]
+	}
+}
+
+func SlicePush[S ~[]E, E any](s *S, e E) {
+	*s = append(*s, e)
+}
+
+func SlicePop[S ~[]E, E any](s *S) E {
+	e := (*s)[len(*s)-1]
+	(*s) = (*s)[:len(*s)-1]
+	return e
+}
+
 var _ ordmap.Map[string, string] // FIXME(delete)
