@@ -20,5 +20,5 @@ func problem6(ctx *problemContext) {
 		panic("fail")
 	}
 	ctx.reportPart1(find(4))
-	ctx.reportPart1(find(14))
+	ctx.reportPart2(find(14))
 }
