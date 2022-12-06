@@ -201,6 +201,14 @@ func (ctx *problemContext) int64s() []int64 {
 	return ns
 }
 
+func (ctx *problemContext) readAll() []byte {
+	b, err := io.ReadAll(ctx.f)
+	if err != nil {
+		log.Fatalln("Read error:", err)
+	}
+	return b
+}
+
 func scanSlice[E any](ctx *problemContext, parse func(string) E) []E {
 	var vs []E
 	scanner := ctx.scanner()
