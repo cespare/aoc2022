@@ -478,3 +478,17 @@ func SlicePop[S ~[]E, E any](s *S) E {
 }
 
 var _ ordmap.Map[string, string] // FIXME(delete)
+
+func cutPrefix(s, prefix string) (string, bool) {
+	if strings.HasPrefix(s, prefix) {
+		return s[len(prefix):], true
+	}
+	return s, false
+}
+
+func cutSuffix(s, suffix string) (string, bool) {
+	if strings.HasSuffix(s, suffix) {
+		return s[:len(suffix)], true
+	}
+	return s, false
+}
