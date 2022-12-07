@@ -98,7 +98,7 @@ func (d *fsDir) nearest(thresh int64) int64 {
 	}
 	for _, child := range d.dirs {
 		rc := child.nearest(thresh)
-		if rc > 0 && rc < r {
+		if rc > 0 && (r == -1 || rc < r) {
 			r = rc
 		}
 	}
