@@ -408,6 +408,39 @@ func (v vec4) neighbors() []vec4 {
 	return neighbors
 }
 
+type grid[E any] struct {
+	g    [][]E
+	rows int64
+	cols int64
+}
+
+func (g *grid[E]) addRow(row []E) {
+	if g.g == nil {
+		g.cols = int64(len(row))
+	} else if g.cols != int64(len(row)) {
+		panic("non-rectangular grid")
+	}
+	g.g = append(g.g, row)
+	g.rows++
+}
+
+func (g *grid[E]) contains(v vec2) bool {
+	return v.x >= 0 && v.x < g.cols && v.y >= 0 && v.y < g.rows
+}
+
+func (g *grid[E]) at(v vec2) E {
+	return g.g[v.y][v.x]
+}
+
+func (g *grid[E]) forEach(f func(v vec2, e E)) {
+	for y := int64(0); y < g.cols; y++ {
+		for x := int64(0); x < g.cols; x++ {
+			v := vec2{x, y}
+			f(v, g.at(v))
+		}
+	}
+}
+
 // Extra slice stuff not in exp/slices.
 
 func SliceMin[E constraints.Ordered](x []E) E {
