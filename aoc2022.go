@@ -282,6 +282,10 @@ func (v vec2) add(v1 vec2) vec2 {
 	return vec2{v.x + v1.x, v.y + v1.y}
 }
 
+func (v vec2) sub(v1 vec2) vec2 {
+	return vec2{v.x - v1.x, v.y - v1.y}
+}
+
 func (v vec2) mul(m int64) vec2 {
 	return vec2{v.x * m, v.y * m}
 }
