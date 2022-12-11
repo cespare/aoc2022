@@ -19,7 +19,7 @@ func problem10(ctx *problemContext) {
 		switch name {
 		case "noop":
 		case "addx":
-			inst.v = parseInt(rest, 10, 64)
+			inst.v = parseInt(rest)
 		default:
 			panic("bad instruction")
 		}
