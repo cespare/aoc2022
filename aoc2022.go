@@ -437,7 +437,7 @@ func (g *grid[E]) at(v vec2) E {
 }
 
 func (g *grid[E]) forEach(f func(v vec2, e E)) {
-	for y := int64(0); y < g.cols; y++ {
+	for y := int64(0); y < g.rows; y++ {
 		for x := int64(0); x < g.cols; x++ {
 			v := vec2{x, y}
 			f(v, g.at(v))
