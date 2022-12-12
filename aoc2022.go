@@ -294,6 +294,28 @@ func (v vec2) mag() int64 {
 	return abs(v.x) + abs(v.y)
 }
 
+func (v vec2) neighbors4() []vec2 {
+	neighbors := make([]vec2, 4)
+	for i, d := range nesw {
+		neighbors[i] = v.add(d)
+	}
+	return neighbors
+}
+
+func (v vec2) neighbors8() []vec2 {
+	neighbors := make([]vec2, 0, 8)
+	for dx := int64(-1); dx <= 1; dx++ {
+		for dy := int64(-1); dy <= 1; dy++ {
+			if dx == 0 && dy == 0 {
+				continue
+			}
+			n := vec2{x: v.x + dx, y: v.y + dy}
+			neighbors = append(neighbors, n)
+		}
+	}
+	return neighbors
+}
+
 type mat2 struct {
 	a00, a01 int64
 	a10, a11 int64

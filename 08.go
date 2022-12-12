@@ -8,13 +8,6 @@ func init() {
 	addSolutions(8, problem8)
 }
 
-var nesw = []vec2{
-	{0, 1},
-	{-1, 0},
-	{0, -1},
-	{1, 0},
-}
-
 func problem8(ctx *problemContext) {
 	var forest grid[int]
 	scanner := ctx.scanner()
@@ -63,6 +56,13 @@ func problem8(ctx *problemContext) {
 		}
 	})
 	ctx.reportPart2(best)
+}
+
+var nesw = []vec2{
+	{0, 1},
+	{-1, 0},
+	{0, -1},
+	{1, 0},
 }
 
 func viewingDistance(forest *grid[int], v, d vec2, h int) int64 {

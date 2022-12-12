@@ -70,8 +70,7 @@ func (m *heightmap) fill() {
 func (m *heightmap) neighbors(v vec2) []vec2 {
 	h0 := m.g.at(v)
 	var neighbors []vec2
-	for _, d := range nesw {
-		n := v.add(d)
+	for _, n := range v.neighbors4() {
 		if !m.g.contains(n) {
 			continue
 		}
