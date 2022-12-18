@@ -383,7 +383,38 @@ func (v vec3) sub(v1 vec3) vec3 {
 	}
 }
 
-func (v vec3) neighbors() []vec3 {
+func (v vec3) min(v1 vec3) vec3 {
+	return vec3{
+		x: minim(v.x, v1.x),
+		y: minim(v.y, v1.y),
+		z: minim(v.z, v1.z),
+	}
+}
+
+func (v vec3) max(v1 vec3) vec3 {
+	return vec3{
+		x: maxim(v.x, v1.x),
+		y: maxim(v.y, v1.y),
+		z: maxim(v.z, v1.z),
+	}
+}
+
+func (v vec3) neighbors6() []vec3 {
+	neighbors := make([]vec3, 6)
+	for i, d := range []vec3{
+		{1, 0, 0},
+		{-1, 0, 0},
+		{0, 1, 0},
+		{0, -1, 0},
+		{0, 0, 1},
+		{0, 0, -1},
+	} {
+		neighbors[i] = v.add(d)
+	}
+	return neighbors
+}
+
+func (v vec3) neighbors26() []vec3 {
 	neighbors := make([]vec3, 0, 26)
 	for dx := int64(-1); dx <= 1; dx++ {
 		for dy := int64(-1); dy <= 1; dy++ {
