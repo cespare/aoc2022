@@ -7,9 +7,12 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
 	"runtime/pprof"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/cespare/next/container/ordmap"
@@ -581,4 +584,23 @@ func cutSuffix(s, suffix string) (string, bool) {
 		return s[:len(suffix)], true
 	}
 	return s, false
+}
+
+func ParDo[S ~[]E, E any](s S, fn func(E)) {
+	var wg sync.WaitGroup
+	var idx atomic.Int64
+	for i := 0; i < runtime.GOMAXPROCS(0); i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for {
+				i := int(idx.Add(1) - 1)
+				if i >= len(s) {
+					return
+				}
+				fn(s[i])
+			}
+		}()
+	}
+	wg.Wait()
 }
