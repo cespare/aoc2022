@@ -58,6 +58,7 @@ func (f *encFile) answer() int {
 			break
 		}
 	}
+
 	var i int
 	ordered := make([]int, len(f.nodes))
 	for node := zero; i == 0 || node != zero; node = node.next {
@@ -78,24 +79,19 @@ func (f *encFile) mix() {
 }
 
 func (f *encFile) mixAt(node *encFileNode) {
+	node.remove()
 	lim := abs(node.n) % (len(f.nodes) - 1)
-	for i := 0; i < lim; i++ {
-		if node.n < 0 {
-			f.moveLeft(node)
-		} else {
-			f.moveRight(node)
+	node1 := node
+	if node.n <= 0 {
+		for i := 0; i < lim+1; i++ {
+			node1 = node1.prev
+		}
+	} else {
+		for i := 0; i < lim; i++ {
+			node1 = node1.next
 		}
 	}
-}
-
-func (f *encFile) moveLeft(node *encFileNode) {
-	node.remove()
-	node.insertAfter(node.prev.prev)
-}
-
-func (f *encFile) moveRight(node *encFileNode) {
-	node.remove()
-	node.insertAfter(node.next)
+	node.insertAfter(node1)
 }
 
 func (n *encFileNode) remove() {
