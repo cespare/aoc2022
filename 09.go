@@ -11,16 +11,13 @@ func init() {
 }
 
 func problem9(ctx *problemContext) {
-	var insts []ropeInstruction
-	scanner := ctx.scanner()
-	for scanner.scan() {
+	insts := scanSlice(ctx, func(line string) ropeInstruction {
 		var inst ropeInstruction
-		line := scanner.text()
 		if _, err := fmt.Sscanf(line, "%c %d", &inst.dir, &inst.n); err != nil {
 			panic(err)
 		}
-		insts = append(insts, inst)
-	}
+		return inst
+	})
 	ctx.reportLoad()
 
 	g := newRopeGrid(2)

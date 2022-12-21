@@ -9,11 +9,7 @@ func init() {
 }
 
 func problem3(ctx *problemContext) {
-	var bags []string
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		bags = append(bags, scanner.text())
-	}
+	bags := scanSlice(ctx, func(s string) string { return s })
 	ctx.reportLoad()
 
 	var score int

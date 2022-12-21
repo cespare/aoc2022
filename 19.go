@@ -15,11 +15,7 @@ func init() {
 }
 
 func problem19(ctx *problemContext) {
-	var blueprints []blueprint
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		blueprints = append(blueprints, parseBlueprint(scanner.text()))
-	}
+	blueprints := scanSlice(ctx, parseBlueprint)
 	ctx.reportLoad()
 
 	var part1 atomic.Int64

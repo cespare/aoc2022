@@ -5,11 +5,7 @@ func init() {
 }
 
 func problem20(ctx *problemContext) {
-	var nums []int
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		nums = append(nums, int(parseInt(scanner.text())))
-	}
+	nums := scanSlice(ctx, func(line string) int { return int(parseInt(line)) })
 	ctx.reportLoad()
 
 	f := newEncFile(nums)

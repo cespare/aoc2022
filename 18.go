@@ -11,12 +11,10 @@ func init() {
 }
 
 func problem18(ctx *problemContext) {
-	var points []vec3
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		v := SliceMap(strings.Split(scanner.text(), ","), parseInt)
-		points = append(points, vec3{x: v[0], y: v[1], z: v[2]})
-	}
+	points := scanSlice(ctx, func(line string) vec3 {
+		v := SliceMap(strings.Split(line, ","), parseInt)
+		return vec3{x: v[0], y: v[1], z: v[2]}
+	})
 	ctx.reportLoad()
 
 	var s cubeSet

@@ -16,11 +16,7 @@ func init() {
 }
 
 func problem16(ctx *problemContext) {
-	var valves []rawValve
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		valves = append(valves, parseValve(scanner.text()))
-	}
+	valves := scanSlice(ctx, parseValve)
 	t := buildValveTunnels(valves)
 	ctx.reportLoad()
 

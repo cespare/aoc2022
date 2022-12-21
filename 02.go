@@ -7,13 +7,10 @@ func init() {
 }
 
 func problem2(ctx *problemContext) {
-	var strats [][2]byte
-	scanner := ctx.scanner()
-	for scanner.scan() {
-		parts := strings.Split(scanner.text(), " ")
-		strat := [2]byte{parts[0][0], parts[1][0]}
-		strats = append(strats, strat)
-	}
+	strats := scanSlice(ctx, func(line string) [2]byte {
+		parts := strings.Split(line, " ")
+		return [2]byte{parts[0][0], parts[1][0]}
+	})
 	ctx.reportLoad()
 
 	var s int
