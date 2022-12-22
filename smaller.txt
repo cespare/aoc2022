@@ -1,2 +1,16 @@
-1,1,1
-2,1,1
+ xx
+ x
+xx
+x
+
+
+
+
+    [AA][BB]
+    [AA][BB]
+    [CC]
+    [CC]
+[DD][EE]
+[DD][EE]
+[FF]
+[FF]
